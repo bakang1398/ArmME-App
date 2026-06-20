@@ -1,7 +1,6 @@
 # 🔐 Alarm System Demo App (Flutter)
 
-A Flutter application built as part of a technical assessment.  
-The app demonstrates authentication, API integration, and real-time state updates for an alarm monitoring system.
+A Flutter application built to demonstrates authentication, API integration, and real-time state updates for an alarm monitoring system.
 
 ---
 
