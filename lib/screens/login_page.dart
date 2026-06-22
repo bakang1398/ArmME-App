@@ -14,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String? errorMessage;
+  bool _obscurePassword = true;
   @override
   void initState() {
     // TODO: implement initState
@@ -40,8 +41,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    emailController.clear();
-    passwordController.clear();
+    emailController.dispose();
+    passwordController.dispose();
     // TODO: implement dispose
     super.dispose();
   }
@@ -81,20 +82,27 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 20,),
                     TextField(
                       controller: passwordController,
+                      obscureText: _obscurePassword,
                       decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(10),
-                          hint: const Text(
-                            "Password",
-                            style: TextStyle(
-                                color: Colors.grey
-                            ),
+                        contentPadding: const EdgeInsets.all(10),
+                        hintText: "Password",
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.grey.shade100),
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                           ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                  color: Colors.grey.shade100
-                              )
-                          )
+                          onPressed: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword;
+                            });
+                          },
+                        ),
                       ),
                     ),
                     const SizedBox(height: 40,),
